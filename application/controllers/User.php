@@ -57,7 +57,7 @@ class User extends CI_Controller
     {
         // check file upload
         if (!empty($_FILES['user_image']['name'])) {
-            $config['upload_path'] = './upload/';
+            $config['upload_path'] = 'user/upload/';
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             // biến sau fiel trùng với csdl (vd ='user_image')
             $config['file_name'] = $_FILES['user_image']['name'];
