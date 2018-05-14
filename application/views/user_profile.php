@@ -88,7 +88,7 @@
                 echo "</pre>"; */?>
                 <td>
                     <a href="<?php echo base_url('user/update?user_id=' . $user['user_id']) ?>">Update</a>
-                    <a href="<?php echo base_url('user/delete?user_id=' . $user['user_id']) ?>"
+                    <a href="<?php echo base_url('user/delete?user_id=' . $user['user_id'].'&user_image='.$user['user_image']) ?>"
                        onclick="return confirm('Sure')">Delete</a>
                 </td>
             </tr>

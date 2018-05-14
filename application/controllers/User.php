@@ -182,18 +182,22 @@ class User extends CI_Controller
         $this->user_model->show_user_id($user_id);
         $data['users'] = $this->user_model->get_users();
         $this->load->view('user_profile.php', $data);
+
     }
 
     public function delete()
     {
+
         $user_id = $this->input->get('user_id');
-        if ($this->user_model->delete($user_id)) {
-            $data['users'] = $this->user_model->get_users();
-            $this->load->view('user_profile.php', $data);
-
-        }
+        $user_image = $this->input->get('user_image');
+//        echo base_url();//.'user/upload/'.$user_image;
+//        exit();
+         $this->user_model->delete($user_id, $user_image);
+        /*var_dump($r);
+        exit();*/
+        $data['users'] = $this->user_model->get_users();
+        $this->load->view('user_profile.php', $data);
     }
-
     public function search_keyword()
     {
         $user_name = $this->input->post('user_name');

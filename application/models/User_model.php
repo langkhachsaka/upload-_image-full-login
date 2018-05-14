@@ -6,6 +6,7 @@ class User_model extends CI_model
     {
         parent::__construct();
         $this->load->database();
+        $this->load->helper("url");
     }
 
     public function register_user($user)
@@ -84,12 +85,13 @@ class User_model extends CI_model
         $this->db->update('user', $data);
     }
 
-    //delete csdl
-    public function delete($user_id)
+    //delete csdl Model
+    public function delete($user_id,$user_image)
     {
         $this->load->database();
         $this->db->where('user_id', $user_id);
-        $this->db->delete('user');
+        unlink('user/upload/'.$user_image);
+        $this->db->delete('user', array('user_id' => $user_id));
         return true;
     }
 
