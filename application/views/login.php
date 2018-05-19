@@ -52,7 +52,7 @@
                         </fieldset>
                     </form>
                     <br>
-                    </b><center><a href="<?php echo base_url('user'); ?>">Register here</a></center><!--for centered text-->
+                    </b><center><a href="<?php echo base_url('user/index'); ?>">Register here</a></center><!--for centered text-->
 
                 </div>
             </div>

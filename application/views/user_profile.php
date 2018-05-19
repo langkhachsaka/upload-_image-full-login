@@ -35,7 +35,7 @@
     </div>
     <hr>
     <div class="w3-bar-block">
-        <a href="layout" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home"></i>  Trang Chủ</a>
+        <a href="home" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home"></i>  Trang Chủ</a>
         <a href="add/add_user" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user-circle-o"></i>  Quản Lý
             Admin</a>
         <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-user-circle-o"></i> Quản Lý Nhân
@@ -56,13 +56,13 @@
 
     <br>
     <?php echo form_open('user/delete_check') ?>
-    <input type="submit" value="delete" onclick="return confirm('Sure')"/>
+    <input type="submit" value="Delete" onclick="return confirm('Sure')"/>
     <table>
         <tr>
             <th>Stt</th>
             <th>ID</th>
             <th>Name</th>
-            <th>Email</th>
+                <th>Email</th>
             <th>Age</th>
             <th>Mobile</th>
             <th>Role</th>
@@ -74,8 +74,8 @@
 
         <?php foreach ($users as $user) : ; ?>
             <tr>
-                <td><input type="checkbox" class="chkCheckBoxId" value="<?php echo $user['user_id']; ?>"
-                           name="user_id[]"/></td>
+                <td><input type="checkbox" class="chkCheckBoxId" value="<?php echo $user['user_id'] .'-'. $user['user_image'] ?>"
+                           name="check[]"/></td>
                 <td><?php echo $user['user_id']; ?></td>
                 <td><?php echo $user['user_name']; ?></td>
                 <td><?php echo $user['user_email']; ?></td>
@@ -85,9 +85,9 @@
                 <td><img src="upload/<?php echo $user['user_image']; ?>" width="50px" height="50px"></td>
                <!-- --><?php /*echo "<pre>";
                 print_r($user);
-                echo "</pre>"; */?>
+                echo "</pre>"; */   ?>
                 <td>
-                    <a href="<?php echo base_url('user/update?user_id=' . $user['user_id']) ?>">Update</a>
+                    <a href="<?php echo base_url('user/update?user_id=' . $user['user_id'].'&user_image='.$user['user_image']) ?>">Update</a>
                     <a href="<?php echo base_url('user/delete?user_id=' . $user['user_id'].'&user_image='.$user['user_image']) ?>"
                        onclick="return confirm('Sure')">Delete</a>
                 </td>

@@ -18,6 +18,16 @@ class User extends CI_Controller
     {
         $this->load->view("register.php");
     }
+    public function home()
+    {
+        $this->load->view("index.php");
+    }
+    public function cart(){
+        $this->load->view("cart.php");
+    }
+    public function product(){
+        $this->load->view("product.php");
+    }
 
 // Đăng kí tài khoản người dùng
     public function register_user()
@@ -61,7 +71,7 @@ class User extends CI_Controller
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             // biến sau fiel trùng với csdl (vd ='user_image')
             $config['file_name'] = $_FILES['user_image']['name'];
-        // load upload lib and initialize
+            // load upload lib and initialize
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
 
@@ -148,9 +158,8 @@ class User extends CI_Controller
     public function user_logout()
     {
         $this->session->sess_destroy();
-        redirect('user/login_view', 'refresh');
+        redirect(base_url('user/login_view'), 'refresh');
     }
-
     public function layout()
     {
 
@@ -192,7 +201,7 @@ class User extends CI_Controller
         $user_image = $this->input->get('user_image');
 //        echo base_url();//.'user/upload/'.$user_image;
 //        exit();
-         $this->user_model->delete($user_id, $user_image);
+        $this->user_model->delete($user_id, $user_image);
         /*var_dump($r);
         exit();*/
         $data['users'] = $this->user_model->get_users();
@@ -207,10 +216,14 @@ class User extends CI_Controller
 
     public function delete_check()
     {
-        foreach ($_POST['user_id'] as $user_id) {
-            $this->user_model->delete($user_id);
+
+        $data = $this->input->post("check");
+        foreach ($data as $item)
+        {
+            $r = explode('-', $item);
+            $this->user_model->delete($r[0],$r[1]);
         }
-        return redirect('user/user_profile');
+        redirect(base_url().'user/user_profile');
     }
 }
 
